@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Donatella - Игровой Портал</title>
+    <style>
+        body {
+            background-image: url('Fon.jpg'); 
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .blue-link {
+            color: #00d4ff;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 24px;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+
+        /* Ойын терезесінің стилі */
+        #game-container {
+            margin-top: 30px;
+            display: none; /* Басында көрінбейді */
+        }
+
+        iframe {
+            border: 5px solid #ff4757;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        }
+
+        .dropdown { display: inline-block; position: relative; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: rgba(0,0,0,0.8);
+            min-width: 200px;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        .dropdown-content button {
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            background: none;
+            cursor: pointer;
+            text-align: left;
+            font-size: 18px;
+        }
+        .dropdown-content button:hover { background: #ff4757; }
+        .dropdown:hover .dropdown-content { display: block; }
+    </style>
+</head>
+<body>
+
+    <h1>Donatella</h1>
+    
+    <div class="nav">
+        <a href="https://mangabuff.ru/manga" target="_blank" class="blue-link">МАНХВА</a>
+
+        <div class="dropdown">
+            <span class="blue-link">ИГРЫ</span>
+            <div class="dropdown-content">
+                <button onclick="playGame('https://www.google.com/logos/2010/pacman10-i.html')">Pacman (Классика)</button>
+                <button onclick="playGame('https://games.softpedia.com/games/Minecraft-Flash/online.html')">Minecraft Flash</button>
+                <button onclick="playGame('https://mario.it/game-online')">Super Mario</button>
+            </div>
+        </div>
+
+        <a href="#" onclick="alert('Тест скоро будет!')" class="blue-link">ТЕСТЫ</a>
+    </div>
+
+    <div id="game-container">
+        <h2 id="game-title">Игра заведена!</h2>
+        <iframe id="game-frame" src="" width="800" height="600"></iframe>
+        <br>
+        <button onclick="closeGame()" style="margin-top:10px; padding:10px; background:#ff4757; color:white; border:none; border-radius:5px; cursor:pointer;">Закрыть игру</button>
+    </div>
+
+    <script>
+        function playGame(url) {
+            document.getElementById('game-frame').src = url;
+            document.getElementById('game-container').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight); // Экранға автоматты түрде түсіреді
+        }
+
+        function closeGame() {
+            document.getElementById('game-container').style.display = 'none';
+            document.getElementById('game-frame').src = '';
+        }
+    </script>
+
+</body>
+</html>
