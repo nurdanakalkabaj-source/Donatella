@@ -1,102 +1,125 @@
+
+            
+           
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Donatella - Игровой Портал</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulCare — Твой уютный уголок</title>
     <style>
         body {
-            background-image: url('Fon.jpg'); 
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
+            margin: 0;
+            padding: 0;
+            background: #2f3542; /* Жылы, қараңғы фон */
             color: white;
-            font-family: sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            padding: 20px;
         }
-
-        .blue-link {
-            color: #00d4ff;
-            text-decoration: underline;
-            font-weight: bold;
-            font-size: 24px;
-            margin: 0 15px;
-            cursor: pointer;
+        .header {
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* Ойын терезесінің стилі */
-        #game-container {
-            margin-top: 30px;
-            display: none; /* Басында көрінбейді */
+        h1 { font-size: 45px; color: #ff9ff3; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        p.subtitle { font-style: italic; color: #ced6e0; margin-top: 10px; }
+        
+        .nav {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
-
-        iframe {
-            border: 5px solid #ff4757;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
-        }
-
-        .dropdown { display: inline-block; position: relative; }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background: rgba(0,0,0,0.8);
-            min-width: 200px;
-            border-radius: 10px;
-            z-index: 10;
-        }
-        .dropdown-content button {
+        .nav a {
             color: white;
-            padding: 12px;
-            width: 100%;
-            border: none;
-            background: none;
-            cursor: pointer;
-            text-align: left;
+            text-decoration: none;
             font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+            cursor: pointer;
         }
-        .dropdown-content button:hover { background: #ff4757; }
-        .dropdown:hover .dropdown-content { display: block; }
+        .nav a:hover {
+            background: #ff9ff3;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .main-container {
+            margin: 30px auto;
+            width: 95%;
+            max-width: 1000px;
+        }
+
+        #content-frame {
+            width: 100%;
+            height: 700px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            display: none;
+            background: white;
+        }
+
+        .welcome-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+        }
+        .welcome-box h2 { color: #ff9ff3; }
+        .welcome-box p { font-size: 18px; line-height: 1.6; color: #dfe4ea; }
     </style>
 </head>
 <body>
 
-    <h1>Donatella</h1>
+<div class="header">
+    <h1>SoulCare</h1>
+    <p class="subtitle">Место, где тебя понимают и ждут</p>
     
     <div class="nav">
-        <a href="https://mangabuff.ru/manga" target="_blank" class="blue-link">МАНХВА</a>
-
-        <div class="dropdown">
-            <span class="blue-link">ИГРЫ</span>
-            <div class="dropdown-content">
-                <button onclick="playGame('https://www.google.com/logos/2010/pacman10-i.html')">Pacman (Классика)</button>
-                <button onclick="playGame('https://games.softpedia.com/games/Minecraft-Flash/online.html')">Minecraft Flash</button>
-                <button onclick="playGame('https://mario.it/game-online')">Super Mario</button>
-            </div>
-        </div>
-
-        <a href="#" onclick="alert('Тест скоро будет!')" class="blue-link">ТЕСТЫ</a>
+        <a onclick="loadContent('https://remanga.org/')">Манхва</a>
+        <a onclick="loadContent('https://play2048.co/')">Игры (2048)</a>
+        <a onclick="loadContent('https://onlinetestpad.com/ru/tests/psychological')">Тесты</a>
+        <a onclick="location.reload()">Главная</a>
     </div>
+</div>
 
-    <div id="game-container">
-        <h2 id="game-title">Игра заведена!</h2>
-        <iframe id="game-frame" src="" width="800" height="600"></iframe>
-        <br>
-        <button onclick="closeGame()" style="margin-top:10px; padding:10px; background:#ff4757; color:white; border:none; border-radius:5px; cursor:pointer;">Закрыть игру</button>
+<div class="main-container">
+    <iframe id="content-frame"></iframe>
+
+    <div id="welcome-message" class="welcome-box">
+        <h2>Добро пожаловать в твой безопасный уголок ❤️</h2>
+        <p>Мы создали <b>SoulCare</b>, чтобы ты мог(ла) отдохнуть. Здесь нет осуждения, только поддержка.</p>
+        <p>✨ Почитай любимую манхву, пройди психологические тесты или просто расслабься за игрой.</p>
+        <p>💬 <b>Нужна помощь?</b> Напиши нам в анонимный чат (зеленая кнопка в углу). Мы всегда рядом, чтобы выслушать.</p>
     </div>
+</div>
 
-    <script>
-        function playGame(url) {
-            document.getElementById('game-frame').src = url;
-            document.getElementById('game-container').style.display = 'block';
-            window.scrollTo(0, document.body.scrollHeight); // Экранға автоматты түрде түсіреді
-        }
-
-        function closeGame() {
-            document.getElementById('game-container').style.display = 'none';
-            document.getElementById('game-frame').src = '';
-        }
-    </script>
+<script>
+    function loadContent(url) {
+        document.getElementById('welcome-message').style.display = 'none';
+        const frame = document.getElementById('content-frame');
+        frame.src = url;
+        frame.style.display = 'block';
+    }
+</script>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/696cf097b79b831983bb498e/1jf8onkai';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
 </body>
 </html>
